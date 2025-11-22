@@ -12,7 +12,8 @@ public class Main {
      * This is the main program entry point. TODO: add new commands when implementing additional features.
      */
     public static void main(String[] args) throws IOException {
-        LedController ledController = new LedControllerImpl(new ApiServiceImpl());
+        ApiService apiService = new ApiServiceImpl();
+        LedController ledController = new LedControllerImpl(apiService);
 
         String input = "";
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -23,6 +24,7 @@ public class Main {
             System.out.println("Enter 'light <id>' to call getLight(id) and get a specific LED");
             System.out.println("Enter 'groupstatus' to show the status of all group LEDs of Gruppe D");
             System.out.println("Enter 'status' to show the status of a single LED");
+            System.out.println("Enter 'set' to change a LED");
             System.out.println("Enter 'exit' to exit the program");
 
             input = reader.readLine();
@@ -80,6 +82,27 @@ public class Main {
                     System.out.println("Invalid id. Please enter a number.");
                 } catch (Exception e) {
                     System.out.println("Error: " + e.getMessage());
+                }
+            }
+
+            else if (input.equalsIgnoreCase("set")) {
+                try {
+                    System.out.println("Please specify LED ID:");
+                    int id = Integer.parseInt(reader.readLine());
+
+                    System.out.println("Please specify color (e.g. #f00):");
+                    String color = reader.readLine().trim();
+
+                    System.out.println("Should the LED be on? (true/false):");
+                    boolean state = Boolean.parseBoolean(reader.readLine().trim());
+
+                    JSONObject response = apiService.setLight(id, color, state);
+                    System.out.println("Response from setLight:");
+                    System.out.println(response.toString(2));
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. ID must be a number, state must be true/false.");
+                } catch (IOException e) {
+                    System.out.println("Error calling setLight: " + e.getMessage());
                 }
             }
 
