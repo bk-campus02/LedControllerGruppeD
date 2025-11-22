@@ -33,3 +33,6 @@ In dieser Iteration sollen Status-Abfragen vollständig funktionieren
 2. Daily;
 - Aufgabenstellung jetzt richtig verstanden (nach Input von prof.)
 - impl von vorne
+
+Retro:
+- Zu viel vorgenommen, Story 1 fertig machen in Sprint 2
