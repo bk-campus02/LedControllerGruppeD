@@ -1,0 +1,30 @@
+Sprint Planning it004
+
+In Sprint 4 wollen wir mit Story 2.2 weitermachen und so weit kommen wie es geht.
+
+- Story 2.2 - Ausschalten aller LEDs - 2
+- Story 2.3 - Lauflicht - 1
+- Story 2.4 - Demo-Programm - 2
+- Story 2.5 - Demo-Programm - 2
+
+Story 3 Aufgaben:
+- Story 3.1 - Secrets
+- Story 3.2 - Spinning Wheel
+- Story 3.3 - Demo-Anwendung
+
+Story 4 Aufgaben:
+- Story 4.1 - Uhrzeit
+- Story 4.2 - Löschen
+- Story 4.3 - Demo-Anwendung
+
+Issues:
+
+Daily 1:
+
+
+Daily 2:
+
+
+Retro:
+
+- Abgabe!
