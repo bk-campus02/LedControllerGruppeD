@@ -10,4 +10,7 @@ public interface LedController {
     // neue implementationen
     JSONObject getLights() throws IOException;
     JSONObject getLight(int id) throws IOException;
+
+    // Gruppen-Status-Abfrage
+    JSONObject[] getGroupLeds() throws IOException;
 }
