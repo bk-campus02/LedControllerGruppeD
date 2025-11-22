@@ -25,6 +25,7 @@ public class Main {
             System.out.println("Enter 'groupstatus' to show the status of all group LEDs of Gruppe D");
             System.out.println("Enter 'status' to show the status of a single LED");
             System.out.println("Enter 'set' to change a LED");
+            System.out.println("Enter 'turnoff' to turn all group LED's off");
             System.out.println("Enter 'exit' to exit the program");
 
             input = reader.readLine();
@@ -105,6 +106,17 @@ public class Main {
                     System.out.println("Error calling setLight: " + e.getMessage());
                 }
             }
+
+            else if (input.equalsIgnoreCase("turnoff")) {
+                try {
+                    ledController.turnOffAllLeds();
+                    System.out.println("All group LEDs have been turned off.");
+                } catch (IOException e) {
+                    System.out.println("Error turning off LEDs: " + e.getMessage());
+                }
+            }
+
+
 
         }
     }
