@@ -18,6 +18,9 @@ Story 4 Aufgaben:
 - Story 4.3 - Demo-Anwendung
 
 Issues:
+- Issue #9: 2.2 fertig
+- Issue #11: 2.3
+- Issue #13: 2.4
 
 Daily 1:
 
