@@ -1,0 +1,20 @@
+Sprint Planning it003
+
+In Sprint 3 wird Story 2 angegangen.
+
+Story 3 Aufgaben:
+- Story 3.1 - Secrets
+- Story 3.2 - Spinning Wheel
+- Story 3.3 - Demo-Anwendung
+
+
+Issues:
+- Issue #1: Secrets
+- Issue #2: Spinning Wheel
+- Issue #3: Demo-Anwendung
+
+Daily 1:
+
+Daily 2:
+
+Retro:
