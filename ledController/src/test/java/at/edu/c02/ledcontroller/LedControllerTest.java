@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -109,7 +110,35 @@ public class LedControllerTest {
             );
         }
     }
+    @Test
+    public void testSpinningLedOneTurn() throws IOException {
+        MockApiService mockApiService = new MockApiService();
+        LedControllerImpl controller = new LedControllerImpl(mockApiService);
 
+        int turns = 1;
+
+        controller.spinningLed("#ff0000", turns);
+
+        int ledCount = LedControllerImpl.GROUP_LED_IDS.length;
+        int expectedTotalCalls = ledCount
+                + 2 * ledCount
+                + ledCount;
+
+        assertEquals(
+                "setLight() should be called correct number of times",
+                expectedTotalCalls,
+                mockApiService.calledSetLightIds.size()
+        );
+
+        for (int id : LedControllerImpl.GROUP_LED_IDS) {
+            int occurrences = Collections.frequency(mockApiService.calledSetLightIds, id);
+            assertEquals(
+                    "LED " + id + " should be switched 4 times for 1 turn",
+                    4,
+                    occurrences
+            );
+        }
+    }
 
     // Dummy-Test kannst du behalten oder löschen
     @Test

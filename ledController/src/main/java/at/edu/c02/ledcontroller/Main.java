@@ -26,7 +26,9 @@ public class Main {
             System.out.println("Enter 'status' to show the status of a single LED");
             System.out.println("Enter 'set' to change a LED");
             System.out.println("Enter 'turnoff' to turn all group LED's off");
+            System.out.println("Enter 'spinningled' to start the spinning LED effect");
             System.out.println("Enter 'exit' to exit the program");
+
 
             input = reader.readLine();
 
@@ -115,6 +117,26 @@ public class Main {
                     System.out.println("Error turning off LEDs: " + e.getMessage());
                 }
             }
+            else if (input.equalsIgnoreCase("spinningled")) {
+                try {
+                    System.out.println("Please specify color (e.g. #f00):");
+                    String color = reader.readLine().trim();
+
+                    System.out.println("How many turns should the spinning LED do?");
+                    String turnsInput = reader.readLine().trim();
+                    int turns = Integer.parseInt(turnsInput);
+
+                    System.out.println("Starting spinning LED effect with color " + color +
+                            " for " + turns + " turns...");
+                    ledController.spinningLed(color, turns);
+                    System.out.println("Spinning LED effect finished.");
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid number for turns. Please enter an integer.");
+                } catch (IOException e) {
+                    System.out.println("Error while running spinning LED effect: " + e.getMessage());
+                }
+            }
+
 
 
 
