@@ -17,12 +17,29 @@ public class Main {
         {
             System.out.println("=== LED Controller ===");
             System.out.println("Enter 'demo' to send a demo request");
+            System.out.println("Enter 'lights' to call getLights()");
+            System.out.println("Enter 'light <id>' to call getLight(id)");
             System.out.println("Enter 'exit' to exit the program");
             input = reader.readLine();
+
             if(input.equalsIgnoreCase("demo"))
             {
                 ledController.demo();
             }
+            else if(input.equalsIgnoreCase("lights"))
+            {
+                System.out.println(ledController.getLights().toString(2));
+            }
+            else if(input.startsWith("light "))
+            {
+                try {
+                    int id = Integer.parseInt(input.split(" ")[1]);
+                    System.out.println(ledController.getLight(id).toString(2));
+                } catch (Exception e) {
+                    System.out.println("Invalid command. Usage: light <number>");
+                }
+            }
         }
     }
 }
+
