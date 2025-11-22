@@ -28,8 +28,8 @@ public class Main {
             System.out.println("Enter 'turnoff' to turn all group LED's off");
             System.out.println("Enter 'spinningled' to start the spinning LED effect");
             System.out.println("Enter 'setled' to change LED color");
+            System.out.println("Enter 'spinningwheel' to start the SpinningWheel effect");
             System.out.println("Enter 'exit' to exit the program");
-
 
             input = reader.readLine();
 
@@ -157,6 +157,23 @@ public class Main {
                     System.out.println("Invalid LED id. Please enter a number.");
                 } catch (IOException e) {
                     System.out.println("Error while setting LED: " + e.getMessage());
+                }
+            }
+
+            else if (input.equalsIgnoreCase("spinningwheel")) {
+                try {
+                    System.out.println("How many steps?");
+                    String stepsInput = reader.readLine();
+                    int steps = Integer.parseInt(stepsInput.trim());
+
+                    System.out.println("Starting SpinningWheel effect...");
+                    ledController.spinningWheel(steps);
+
+                    System.out.println("SpinningWheel effect finished!");
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid number. Please enter a valid integer.");
+                } catch (IOException e) {
+                    System.out.println("Error executing spinningWheel: " + e.getMessage());
                 }
             }
 

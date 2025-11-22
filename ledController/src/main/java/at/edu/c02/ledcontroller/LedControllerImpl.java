@@ -108,5 +108,63 @@ public class LedControllerImpl implements LedController {
         turnOffAllLeds();
     }
 
+    @Override
+    public void spinningWheel(int steps) throws IOException {
+        JSONObject[] leds = getGroupLeds();
+        int n = GROUP_LED_IDS.length;
+
+        String[] colors = new String[n];
+        boolean[] states = new boolean[n];
+
+        for (int i = 0; i < n; i++) {
+            JSONObject led = leds[i];
+            colors[i] = led.getString("color");
+            states[i] = led.getBoolean("on");
+        }
+
+        boolean allOffOrBlack = true;
+        for (int i = 0; i < n; i++) {
+            if (states[i] || !colors[i].equalsIgnoreCase("#000000")) {
+                allOffOrBlack = false;
+                break;
+            }
+        }
+
+        if (allOffOrBlack) {
+            String[] pattern = { "#f00", "#0f0", "#ff0" };
+            for (int i = 0; i < n; i++) {
+                colors[i] = pattern[i % pattern.length];
+                states[i] = true;
+            }
+
+            for (int i = 0; i < n; i++) {
+                apiService.setLight(GROUP_LED_IDS[i], colors[i], states[i]);
+            }
+        }
+        for (int step = 0; step < steps; step++) {
+
+            String lastColor = colors[n - 1];
+            boolean lastState = states[n - 1];
+
+            for (int i = n - 1; i > 0; i--) {
+                colors[i] = colors[i - 1];
+                states[i] = states[i - 1];
+            }
+            colors[0] = lastColor;
+            states[0] = lastState;
+
+            for (int i = 0; i < n; i++) {
+                apiService.setLight(GROUP_LED_IDS[i], colors[i], states[i]);
+            }
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new IOException("Interrupted during spinningWheel", e);
+            }
+        }
+    }
+
 
 }
