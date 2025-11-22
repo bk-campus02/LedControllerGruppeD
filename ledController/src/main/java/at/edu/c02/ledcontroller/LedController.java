@@ -17,5 +17,6 @@ public interface LedController {
     // Story 2.2
     void turnOffAllLeds() throws IOException;
     void spinningLed(String color, int turns) throws IOException;
+    void spinningWheel(int steps) throws IOException;
 
 }
