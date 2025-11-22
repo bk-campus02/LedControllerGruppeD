@@ -84,5 +84,29 @@ public class LedControllerImpl implements LedController {
             apiService.setLight(id, "#000000", false);
         }
     }
+    @Override
+    public void spinningLed(String color, int turns) throws IOException {
+        turnOffAllLeds();
+
+        for (int t = 0; t < turns; t++) {
+            for (int i = 0; i < GROUP_LED_IDS.length; i++) {
+                int id = GROUP_LED_IDS[i];
+
+                apiService.setLight(id, color, true);
+
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    return;
+                }
+
+                apiService.setLight(id, "#000000", false);
+            }
+        }
+
+        turnOffAllLeds();
+    }
+
 
 }
