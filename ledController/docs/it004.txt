@@ -35,5 +35,10 @@ Daily 2:
 
 
 Retro:
+- Story 1, 2 und 3 fertig gestellt
+- 3 gerade noch zum Schluss noch kurz nur getestet
+- Rückblickend:
+    - Bessere Zeitplanung und vor allem Einschätzung
+    - 4 ist sich nicht mehr ausgegangen leider
 
-- Abgabe!
+- Abgabe
