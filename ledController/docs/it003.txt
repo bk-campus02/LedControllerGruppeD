@@ -14,7 +14,14 @@ Issues:
 - Issue #3: Demo-Anwendung
 
 Daily 1:
+- Secret.txt Datei von Story 3 vorziehen
+- 2.1 erledigen
 
 Daily 2:
+- Probleme bei 2. besprechen
+- Wie holen wir die Zeit schnellstmöglich nach?
+- 3.1 fertig
 
 Retro:
+- Json Request für 2.1 erledigt
+- Recherche wie man Probleme beheben kann
