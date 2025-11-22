@@ -9,6 +9,11 @@ import java.io.IOException;
  * This class handles the actual logic
  */
 public class LedControllerImpl implements LedController {
+
+    // TODO: Diese IDs ggf. an die Angabe anpassen!
+    // Gruppen-LED-IDs zentral definieren (wird später auch für andere Stories praktisch)
+    static final int[] GROUP_LED_IDS = { 1, 2, 3, 4 };
+
     private final ApiService apiService;
 
     public LedControllerImpl(ApiService apiService)
@@ -40,4 +45,16 @@ public class LedControllerImpl implements LedController {
         return apiService.getLight(id);
     }
 
+    @Override
+    public JSONObject[] getGroupLeds() throws IOException {
+        JSONObject[] result = new JSONObject[GROUP_LED_IDS.length];
+
+        for (int i = 0; i < GROUP_LED_IDS.length; i++) {
+            int ledId = GROUP_LED_IDS[i];
+            // für jede Gruppen-LED den Status via ApiService holen
+            result[i] = apiService.getLight(ledId);
+        }
+
+        return result;
+    }
 }
