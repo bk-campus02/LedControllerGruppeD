@@ -29,4 +29,15 @@ public class LedControllerImpl implements LedController {
         System.out.println("First light id is: " + firstLight.getInt("id"));
         System.out.println("First light color is: " + firstLight.getString("color"));
     }
+
+    @Override
+    public JSONObject getLights() throws IOException {
+        return apiService.getLights();
+    }
+
+    @Override
+    public JSONObject getLight(int id) throws IOException {
+        return apiService.getLight(id);
+    }
+
 }

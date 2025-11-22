@@ -22,7 +22,6 @@ public class ApiServiceImpl implements ApiService {
      * @return `getLights` response JSON object
      * @throws IOException Throws if the request could not be completed successfully
      */
-    @Override
     // Gemeinsame Methode zum Ausführen eines GET-Requests + JSON-Parsing
     private JSONObject doRequest(String urlString) throws IOException {
         // Connect to the server
@@ -55,7 +54,7 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public JSONObject getLight(int id) throws IOException {
-        return doRequest("https://balanced-civet-91.hasura.app/api/rest/getLight?id=" + id);
+        return doRequest("https://balanced-civet-91.hasura.app/api/rest/lights/" + id);
     }
 
 

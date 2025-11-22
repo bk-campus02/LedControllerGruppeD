@@ -30,12 +30,17 @@ public class Main {
             {
                 System.out.println(ledController.getLights().toString(2));
             }
-            else if(input.startsWith("light "))
-            {
-                try {
-                    int id = Integer.parseInt(input.split(" ")[1]);
-                    System.out.println(ledController.getLight(id).toString(2));
-                } catch (Exception e) {
+            else if (input.toLowerCase().startsWith("light")) {
+                String[] parts = input.trim().split("\\s+"); // trennt beliebig viele Leerzeichen
+
+                if (parts.length == 2) {
+                    try {
+                        int id = Integer.parseInt(parts[1]);
+                        System.out.println(ledController.getLight(id).toString(2));
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid id. Usage: light <number>");
+                    }
+                } else {
                     System.out.println("Invalid command. Usage: light <number>");
                 }
             }
