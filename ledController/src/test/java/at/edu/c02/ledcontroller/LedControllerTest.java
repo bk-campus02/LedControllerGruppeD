@@ -22,6 +22,7 @@ public class LedControllerTest {
 
         // protokollierte IDs, für die getLight(...) aufgerufen wurde
         final List<Integer> calledGetLightIds = new ArrayList<>();
+        final List<Integer> calledSetLightIds = new ArrayList<>();
 
         @Override
         public JSONObject getLights() {
@@ -42,6 +43,19 @@ public class LedControllerTest {
             obj.put("on", true);
             return obj;
         }
+
+        @Override
+        public JSONObject setLight(int id, String color, boolean state) {
+            calledSetLightIds.add(id);
+
+            // Dummy JSON response
+            JSONObject obj = new JSONObject();
+            obj.put("id", id);
+            obj.put("color", color);
+            obj.put("state", state);
+            return obj;
+        }
+
     }
 
     @Test
@@ -70,6 +84,32 @@ public class LedControllerTest {
         // Optional: Prüfen, dass Rückgabearray die gleiche Länge hat
         assertEquals(LedControllerImpl.GROUP_LED_IDS.length, groupLeds.length);
     }
+
+    @Test
+    public void testTurnOffAllLeds() throws IOException {
+        MockApiService mockApiService = new MockApiService();
+        LedControllerImpl controller = new LedControllerImpl(mockApiService);
+
+        controller.turnOffAllLeds();
+
+        assertEquals(
+                "setLight() should be called once for each group LED",
+                LedControllerImpl.GROUP_LED_IDS.length,
+                mockApiService.calledSetLightIds.size()
+        );
+
+        for (int i = 0; i < LedControllerImpl.GROUP_LED_IDS.length; i++) {
+            int expectedId = LedControllerImpl.GROUP_LED_IDS[i];
+            int actualId = mockApiService.calledSetLightIds.get(i);
+
+            assertEquals(
+                    "Unexpected LED ID in setLight() at index " + i,
+                    expectedId,
+                    actualId
+            );
+        }
+    }
+
 
     // Dummy-Test kannst du behalten oder löschen
     @Test

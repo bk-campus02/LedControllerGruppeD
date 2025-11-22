@@ -13,4 +13,7 @@ public interface LedController {
 
     // Gruppen-Status-Abfrage
     JSONObject[] getGroupLeds() throws IOException;
+
+    // Story 2.2
+    void turnOffAllLeds() throws IOException;
 }
