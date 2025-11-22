@@ -4,6 +4,8 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class handles the actual logic
@@ -47,14 +49,24 @@ public class LedControllerImpl implements LedController {
 
     @Override
     public JSONObject[] getGroupLeds() throws IOException {
-        JSONObject[] result = new JSONObject[GROUP_LED_IDS.length];
+        JSONObject response = apiService.getLights();
+        JSONArray lights = response.getJSONArray("lights");
 
-        for (int i = 0; i < GROUP_LED_IDS.length; i++) {
-            int ledId = GROUP_LED_IDS[i];
-            // für jede Gruppen-LED den Status via ApiService holen
-            result[i] = apiService.getLight(ledId);
+        // Gruppenname D wird hardcoded - wie besprochen
+        List<JSONObject> groupD = new ArrayList<>();
+
+        for (int i = 0; i < lights.length(); i++) {
+            JSONObject light = lights.getJSONObject(i);
+
+            JSONObject group = light.optJSONObject("groupByGroup");
+            if (group != null) {
+                String name = group.optString("name", "");
+                if ("D".equals(name)) {
+                    groupD.add(light);
+                }
+            }
         }
 
-        return result;
+        return groupD.toArray(new JSONObject[0]);
     }
 }
