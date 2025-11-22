@@ -27,6 +27,7 @@ public class Main {
             System.out.println("Enter 'set' to change a LED");
             System.out.println("Enter 'turnoff' to turn all group LED's off");
             System.out.println("Enter 'spinningled' to start the spinning LED effect");
+            System.out.println("Enter 'setled' to change LED color");
             System.out.println("Enter 'exit' to exit the program");
 
 
@@ -137,6 +138,27 @@ public class Main {
                 }
             }
 
+
+            else if (input.equalsIgnoreCase("setled")) {
+                // Story 2.5 – Demo-Programm
+                try {
+                    System.out.println("Which LED?");
+                    String ledInput = reader.readLine();
+                    int id = Integer.parseInt(ledInput.trim());
+
+                    System.out.println("Which color?");
+                    String color = reader.readLine().trim();
+
+                    // LED automatisch einschalten (state = true)
+                    apiService.setLight(id, color, true);
+
+                    System.out.println("LED color set!");
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid LED id. Please enter a number.");
+                } catch (IOException e) {
+                    System.out.println("Error while setting LED: " + e.getMessage());
+                }
+            }
 
 
 
