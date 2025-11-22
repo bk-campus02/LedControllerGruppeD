@@ -14,7 +14,10 @@ public class LedControllerImpl implements LedController {
 
     // TODO: Diese IDs ggf. an die Angabe anpassen!
     // Gruppen-LED-IDs zentral definieren (wird später auch für andere Stories praktisch)
-    static final int[] GROUP_LED_IDS = { 1, 2, 3, 4 };
+
+    public static final int[] GROUP_LED_IDS = {
+            2, 10, 11, 12, 13, 14, 15, 16
+    };
 
     private final ApiService apiService;
 
@@ -69,4 +72,17 @@ public class LedControllerImpl implements LedController {
 
         return groupD.toArray(new JSONObject[0]);
     }
+
+    @Override
+    public void turnOffAllLeds() throws IOException {
+
+        int[] GROUP_LED_IDS = {
+                2, 10, 11, 12, 13, 14, 15, 16
+        };
+
+        for (int id : GROUP_LED_IDS) {
+            apiService.setLight(id, "#000000", false);
+        }
+    }
+
 }
