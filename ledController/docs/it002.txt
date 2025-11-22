@@ -1,0 +1,36 @@
+Sprint Planning it002
+
+
+Stories, die wir in Iteration 1 bearbeiten:
+- Story 1.1: Einzel-Status-Abfrage (ApiService.getLight(id))
+- Story 1.2: Gruppen-Status-Abfrage (LedController.getGroupLeds() + Test)
+- Story 1.3: Main um groupstatus + status Command erweitern
+
+Begründung: Diese Stories hängen zusammen
+
+Aufwandsschätzung (Story Poits):
+- Story 2.1 - Setzen einer LED - 2
+- Story 2.2 - Ausschalten aller LEDs - 2
+- Story 2.3 - Lauflicht - 1
+- Story 2.4 - Demo-Programm - 2
+- Story 2.5 - Demo-Programm - 2
+
+
+Issues:
+- Issue #1: Setzen einer LED
+- Issue #2: Ausschalten aller LEDs
+- Issue #3: Lauflicht
+- Issue #4: Demo-Programm
+- Issue #5: Demo-Programm
+
+
+Sprintziel:
+In dieser Iteration die gewünschten Funktionen alle funktionieren und 1 soll davor fertig gemacht werden
+
+1. Daily:
+- IT001 fertig machen
+- Probleme mit GitHub besprechen
+
+
+2. Daily:
+
