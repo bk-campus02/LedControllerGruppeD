@@ -52,25 +52,12 @@ public class LedControllerImpl implements LedController {
 
     @Override
     public JSONObject[] getGroupLeds() throws IOException {
-        JSONObject response = apiService.getLights();
-        JSONArray lights = response.getJSONArray("lights");
-
-        // Gruppenname D wird hardcoded - wie besprochen
-        List<JSONObject> groupD = new ArrayList<>();
-
-        for (int i = 0; i < lights.length(); i++) {
-            JSONObject light = lights.getJSONObject(i);
-
-            JSONObject group = light.optJSONObject("groupByGroup");
-            if (group != null) {
-                String name = group.optString("name", "");
-                if ("D".equals(name)) {
-                    groupD.add(light);
-                }
-            }
+        JSONObject[] leds = new JSONObject[GROUP_LED_IDS.length];
+        for (int i = 0; i < GROUP_LED_IDS.length; i++) {
+            int id = GROUP_LED_IDS[i];
+            leds[i] = apiService.getLight(id);
         }
-
-        return groupD.toArray(new JSONObject[0]);
+        return leds;
     }
 
     @Override
