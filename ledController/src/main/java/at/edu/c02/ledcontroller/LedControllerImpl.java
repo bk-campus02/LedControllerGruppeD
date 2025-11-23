@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class handles the actual logic
+ * This class handles the actual logic.
  */
 public class LedControllerImpl implements LedController {
 
